@@ -3,10 +3,14 @@ node('slave'){
      git 'https://github.com/arunkarthick34/devops_project.git'
    }
    stage('Compile-Package'){
-	   
+	   try{
 	   sh "mvn clean package"
 	   sh 'mv target/myweb*.war target/newapp.war'
 	   sh 'cp target/newapp.war /home/newapp.war'
+	   }
+	   finally{
+		   echo "success"
+	   }
 	   
 	   
    } 
@@ -44,17 +48,6 @@ node('slave'){
    }
 }
 	
-	finally {
-        def currentResult = currentBuild.result ?: 'SUCCESS'
-        if (currentResult == 'UNSTABLE') {
-            echo 'This will run only if the run was marked as unstable'
-        }
-
-        def previousResult = currentBuild.getPreviousBuild()?.result
-        if (previousResult != null && previousResult != currentResult) {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
-        }
 
        
 }
