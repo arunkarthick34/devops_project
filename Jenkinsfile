@@ -3,9 +3,10 @@ node('slave'){
      git 'https://github.com/arunkarthick34/devops_project.git'
    }
    stage('Compile-Package'){
+	   sh pwd
 	   sh "mvn clean package"
 	   sh 'mv target/myweb*.war target/newapp.war'
-	   sh pwd
+	   
 	   
    } 
    stage('SonarQube Analysis') {/*
