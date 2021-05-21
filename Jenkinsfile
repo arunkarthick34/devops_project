@@ -1,4 +1,5 @@
 node('slave'){
+	try {
    stage('SCM Checkout'){
      git 'https://github.com/arunkarthick34/devops_project.git'
    }
@@ -48,8 +49,11 @@ node('slave'){
    }
 }
 	
-
-       
+	}
+	
+       catch(error){
+		echo "build failed"
+	}
 }
 
 
