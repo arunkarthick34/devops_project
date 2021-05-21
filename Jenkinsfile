@@ -6,7 +6,7 @@ node('slave'){
 	   
 	   sh "mvn clean package"
 	   sh 'mv target/myweb*.war target/newapp.war'
-	   sh 'mv target/newapp.war /home/newapp.war'
+	   sh 'cp target/newapp.war /home/newapp.war'
 	   
 	   
    } /*
@@ -43,4 +43,16 @@ node('slave'){
    sh 'docker run -d -p 8090:8080 --name tomcattest arunkarthick34/myweb:0.0.2' 
    }
 }
+}
+
+
+node{
+	
+	   stage('SonarQube Analysis') {
+	        def mvnHome =  tool name: 'maven', type: 'maven'
+	        withSonarQubeEnv('sonar') { 
+	          sh "${mvnHome}/bin/mvn sonar:sonar"
+	        }
+	   
+	    }
 }
