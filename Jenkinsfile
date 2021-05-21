@@ -1,4 +1,4 @@
-node('agent'){
+node('maven'){
    stage('SCM Checkout'){
      git 'https://github.com/arunkarthick34/devops_project.git'
    }
