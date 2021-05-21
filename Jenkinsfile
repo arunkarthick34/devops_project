@@ -5,13 +5,15 @@ node('slave'){
    stage('Compile-Package'){
 	   sh "mvn clean package"
 	   sh 'mv target/myweb*.war target/newapp.war'
+	   sh pwd
 	   
    } 
-   stage('SonarQube Analysis') {
+   stage('SonarQube Analysis') {/*
 	        def mvnHome =  tool name: 'maven', type: 'maven'
 	        withSonarQubeEnv('sonar') { 
 	          sh "${mvnHome}/bin/mvn sonar:sonar"
-	        }
+	        }*/
+	   docker cp 
 	    }
 	    
    stage('Build Docker Imager'){
