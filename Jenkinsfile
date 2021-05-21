@@ -3,10 +3,12 @@ node('maven'){
      git 'https://github.com/arunkarthick34/devops_project.git'
    }
    stage('Compile-Package'){
-
+/*
       def mvnHome =  tool name: 'maven3', type: 'maven'   
       sh "${mvnHome}/bin/mvn clean package"
-	  sh 'mv target/myweb*.war target/newapp.war'
+      sh 'mv target/myweb*.war target/newapp.war'
+*/
+	   sh "mvn clean package"
    } /*
    stage('SonarQube Analysis') {
 	        def mvnHome =  tool name: 'maven3', type: 'maven'
