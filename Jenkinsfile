@@ -60,6 +60,9 @@ node('slave'){
         if (currentResult == 'UNSTABLE') {
             echo 'This will run only if the run was marked as unstable'
         }
+		else{
+		echo 'This project build successfully'	
+		}
 
 
         def previousResult = currentBuild.getPreviousBuild()?.result
