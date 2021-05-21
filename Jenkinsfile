@@ -54,6 +54,18 @@ node('slave'){
        catch(error){
 		echo "build failed"
 	}
+	
+	finally {
+        def currentResult = currentBuild.result ?: 'SUCCESS'
+        if (currentResult == 'UNSTABLE') {
+            echo 'This will run only if the run was marked as unstable'
+        }
+
+        def previousResult = currentBuild.getPreviousBuild()?.result
+        if (previousResult != null && previousResult != currentResult) {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
 }
 
 
