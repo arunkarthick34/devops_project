@@ -45,15 +45,4 @@ node('slave'){
 }
 }
 
-/*
-node{
-	
-	   stage('SonarQube Analysis') {
-	        def mvnHome =  tool name: 'maven', type: 'maven'
-	        withSonarQubeEnv('sonar') { 
-	          sh "${mvnHome}/bin/mvn sonar:sonar"
-	        }
-	   
-	    }
-}
-*/
+
